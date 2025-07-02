@@ -1,16 +1,28 @@
 const arr = 
 [
 `import Express from "express"
+import 'dotenv/config'
 
+import path from 'path'
+import { dirname} from 'path';
+import { fileURLToPath } from 'url';
+import mainRoute from "./routes/v1/main/mainRoute.js";
+
+
+const port = process.env.PORT
 const app = Express()
 
-app.get("/", (req,res) => {
-    res.json("hello world")
-})
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(Express.json({}));
+app.use(Express.urlencoded({ extended: true }));
+
+app.use('/', Express.static(path.join(__dirname, 'public')));
+
+app.use("/main",mainRoute)
 
 
-app.listen("3000", () => {
-    console.log("app is listening on 3000")
+app.listen(port, () => {
+    console.log("App is listening on " + port)
 })
 `,  
 `<!DOCTYPE html>
@@ -46,11 +58,21 @@ body
 
 h1.colour = "blue";
 `,
-`
-test
+`import { Router } from "express";
+import { main } from "./main.js";
+
+const router = Router()
+
+router
+.route("/")
+.get(main)
+
+export default router
 `,
-`
-test
+`export function main(req, res)
+{
+    res.json("main api link")
+}
 `,
 `PORT="3000"
 
@@ -58,8 +80,7 @@ test
 `
 {
   "scripts": {
-    "dev": "npx vite",
-    "build": "node nodeUtil.js"
+    "dev": "node --watch src/index.js"
   },
   "name": "node-gen",
   "version": "1.0.0",
@@ -71,10 +92,7 @@ test
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
-    "dotenv": "^17.0.0"
-  },
-  "devDependencies": {
-    "vite": "^7.0.0"
+    "dotenv": "^17.0.1"
   }
 }
 `

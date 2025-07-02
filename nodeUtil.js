@@ -4,7 +4,7 @@ import fs from "fs";
 import  { Command } from 'commander';
 import GenText from "./fileTemplate/fileGen.js";
 const folders = ["src","src/public","src/public/images","src/public/js", "src/public/css", "src/routes", "src/routes/v1", "src/routes/v1/main"]
-const files = ["src/index.js", "src/public/index.html","src/public/css/style.css", "src/public/js/main.js", "src/route/v1/main/main.js", "src/route/v1/main/index.js",".env","package.json"] 
+const files = ["src/index.js", "src/public/index.html","src/public/css/style.css", "src/public/js/main.js", "src/routes/v1/main/mainRoute.js", "src/routes/v1/main/main.js",".env","package.json"] 
 let path = '' 
 const program = new Command();
 

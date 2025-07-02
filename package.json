@@ -12,11 +12,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "commander": "^14.0.0",
-    "dotenv": "^17.0.0",
-    "express": "^5.1.0"
-  },
-  "devDependencies": {
-    "vite": "^7.0.0"
+    "commander": "^14.0.0"
   }
 }
